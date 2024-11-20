@@ -1,17 +1,19 @@
 package CartFunctionality;
 
-import SearchTest.VerifySearchFunctionality;
+import MainMethods.MainMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
-public class CartTestImpelementation extends VerifySearchFunctionality {
+import static SearchTest.searchFunctionality.searchForProductByName;
+
+public class CartTestImpelementation extends MainMethods {
     public void ADDSearchedProductToCart() throws InterruptedException {
 
         openBrowser();
         MainPage();
-        searchForProductByName();
+        searchForProductByName() ;
         WebElement product=driver.findElement(By.xpath("/html/body/section[2]/div[1]/div/div[2]/div/div[2]/div/div[1]/div[1]/img"));
         Actions hover=new Actions(driver);
         hover.moveToElement(product).perform();

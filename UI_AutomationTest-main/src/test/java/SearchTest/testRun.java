@@ -1,14 +1,16 @@
 package SearchTest;
 
-import SearchTest.VerifySearchFunctionality;
+import MainMethods.MainMethods;
 import org.testng.annotations.Test;
 
-public class testRun extends VerifySearchFunctionality {
+import static SearchTest.searchFunctionality.searchForProductByName;
+
+public class testRun extends MainMethods {
     @Test
     public void SearchForExistingItem(){
         openBrowser();
         MainPage();
-        searchForProductByName();
+        searchForProductByName() ;
 
 
     }
