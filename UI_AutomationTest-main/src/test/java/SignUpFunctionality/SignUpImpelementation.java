@@ -72,7 +72,7 @@ public class SignUpImpelementation extends MainMethods {
         //Enter mobile
         driver.findElement(By.xpath("//*[@id=\"mobile_number\"]")).sendKeys(fakemobile());
         //Click on create account
-        driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div/div[1]/form/button")).click();
+        driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div/div[1]/form/button")).submit();
 
         Assert.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/account_created", "test fails");
 

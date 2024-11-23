@@ -7,6 +7,7 @@ import org.testng.Assert;
 
 public class searchFunctionality extends MainMethods {
     public static void searchForProductByName() {
+        driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[2]/a"));
         //Search For A product
         WebElement search_Item = driver.findElement(By.xpath("//*[@id=\"search_product\"]"));
         search_Item.sendKeys("Men Tshirt");
