@@ -9,7 +9,6 @@ public class testRun extends MainMethods {
     @Test
     public void SearchForExistingItem(){
         openBrowser();
-        MainPage();
         searchForProductByName() ;
 
 

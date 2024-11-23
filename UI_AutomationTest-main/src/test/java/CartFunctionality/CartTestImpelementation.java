@@ -12,7 +12,7 @@ public class CartTestImpelementation extends MainMethods {
     public void ADDSearchedProductToCart() throws InterruptedException {
 
         openBrowser();
-        MainPage();
+
         searchForProductByName() ;
         WebElement product=driver.findElement(By.xpath("/html/body/section[2]/div[1]/div/div[2]/div/div[2]/div/div[1]/div[1]/img"));
         Actions hover=new Actions(driver);

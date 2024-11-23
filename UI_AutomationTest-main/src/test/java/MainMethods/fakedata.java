@@ -19,4 +19,8 @@ public class fakedata {
         Faker fakemobile = new Faker();
         return fakemobile.number().digits(9);
     }
+    public static String fakepassword() {
+        Faker fakpass = new Faker();
+        return fakpass.number().digits(9);
+    }
 }
