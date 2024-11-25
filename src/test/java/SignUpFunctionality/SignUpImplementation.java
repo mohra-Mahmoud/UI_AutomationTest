@@ -111,7 +111,7 @@ public class SignUpImplementation extends MainMethods {
     public void EnterAccountInformation() {
         initializeAccountInfoFormElements(); // Initialize elements for the account information form
         Gender.click();
-        savedPassword=fakepassword();
+        savedPassword = fakepassword();
         Password.sendKeys(savedPassword);
         new Select(Dayes).selectByValue("19");
         new Select(Month).selectByValue("6");
@@ -129,7 +129,6 @@ public class SignUpImplementation extends MainMethods {
 
         // Verify successful account creation
         Assert.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/account_created", "Account creation failed");
-
     }
 
 
@@ -149,5 +148,7 @@ public class SignUpImplementation extends MainMethods {
 
         return savedPassword;
     }
+
+
 }
 
