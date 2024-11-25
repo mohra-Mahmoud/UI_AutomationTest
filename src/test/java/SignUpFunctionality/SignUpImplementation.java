@@ -38,6 +38,11 @@ public class SignUpImplementation extends MainMethods {
     private WebElement City;
     private WebElement ZipCode;
     private WebElement Mobile;
+    public static String savedEmail;
+    public static String savedPassword;
+
+
+
 
     /**
      * Step 1: Initialize elements for the home page.
@@ -52,6 +57,7 @@ public class SignUpImplementation extends MainMethods {
     private void initializeSignUpFormElements() {
         this.name = driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[3]/div/form/input[2]"));
         this.email = driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[3]/div/form/input[3]"));
+
         this.SignUpButton = driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[3]/div/form/button"));
     }
 
@@ -70,9 +76,11 @@ public class SignUpImplementation extends MainMethods {
         this.Country = driver.findElement(By.xpath("//*[@id=\"country\"]"));
         this.State = driver.findElement(By.xpath("//*[@id=\"state\"]"));
         this.City = driver.findElement(By.xpath("//*[@id=\"city\"]"));
-        this.ZipCode = driver.findElement(By.xpath("//*[@id=\"zipcode\"]"));
+        this.ZipCode =driver.findElement(By.xpath("//*[@id=\"zipcode\"]"));
         this.Mobile = driver.findElement(By.xpath("//*[@id=\"mobile_number\"]"));
     }
+
+
 
     /**
      * Test: Navigate to the sign-up screen.
@@ -91,7 +99,8 @@ public class SignUpImplementation extends MainMethods {
     public void FillSignUpForm() {
         initializeSignUpFormElements(); // Initialize elements for the first sign-up form
         name.sendKeys(fakeName().toString());
-        email.sendKeys(fakeemail());
+        savedEmail = fakeemail();
+        email.sendKeys(savedEmail);
         SignUpButton.click(); // Navigate to the next form
     }
 
@@ -102,7 +111,8 @@ public class SignUpImplementation extends MainMethods {
     public void EnterAccountInformation() {
         initializeAccountInfoFormElements(); // Initialize elements for the account information form
         Gender.click();
-        Password.sendKeys(fakepassword());
+        savedPassword=fakepassword();
+        Password.sendKeys(savedPassword);
         new Select(Dayes).selectByValue("19");
         new Select(Month).selectByValue("6");
         new Select(Years).selectByValue("1996");
@@ -116,11 +126,28 @@ public class SignUpImplementation extends MainMethods {
         Mobile.sendKeys(fakemobile());
         driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div/div[1]/form/button")).submit();
 
+
         // Verify successful account creation
         Assert.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/account_created", "Account creation failed");
+
     }
+
+
+
+
     @AfterClass
     public void tearDown() {
+
         driver.quit();
     }
+    public static String getSavedEmail() {
+
+        return  savedEmail;
+    }
+
+    public  static String getSavedPassword() {
+
+        return savedPassword;
+    }
 }
+
