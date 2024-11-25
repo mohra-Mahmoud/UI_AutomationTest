@@ -122,6 +122,5 @@ public class SignUpImplementation extends MainMethods {
     @AfterClass
     public void tearDown() {
         driver.quit();
-        ReportManger.flushReport(); // Save the report
     }
 }

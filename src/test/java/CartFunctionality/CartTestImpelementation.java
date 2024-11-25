@@ -10,6 +10,8 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 
 public class CartTestImpelementation extends MainMethods {
 
@@ -19,6 +21,7 @@ private WebElement product;
    private   WebElement productincart;
    private WebElement  Cartbutton;
    private WebElement viewCartlink;
+    private WebElement tableBody;
 public void IntialAddToCartElements(){
 
     this.product=driver.findElement(By.xpath("/html/body/section[2]/div[1]/div/div[2]/div/div[2]/div/div[1]/div[1]/img"));
@@ -30,7 +33,7 @@ public void IntialAddToCartElements(){
 
     public void IntialCartElements(){
 
-         this.productincart=driver.findElement(By.xpath("//*[@id=\"product-2\"]/td[3]/p"));
+       this.productincart=driver.findElement(By.xpath("//*[@id=\"product-2\"]/td[3]/p"));
 
 
 
@@ -56,27 +59,21 @@ public void IntialAddToCartElements(){
 
 
     }
-/*    @Test(dependsOnMethods ="ADDSearchedProductToCart" )
+    @Test
     public void VerifyThatProductAddedToCart() throws InterruptedException {
         IntialCartElements();
         System.out.println( driver.getCurrentUrl());
-        String actualproduct =productincart.getText();
+       String actualproduct =productincart.getText().trim();
+        System.out.println(actualproduct);
         String expectedproduct="Rs. 400";
-        Assert.assertEquals(actualproduct,expectedproduct);}*/
-    @AfterClass
-    public void tearDown() {
-        driver.quit();
-
-    }
-
-
-
-
-
-
+       Assert.assertEquals(actualproduct,expectedproduct);
 
 
 
 
 
 }
+    @AfterClass
+    public void tearDown() {
+        driver.quit();
+    }}
