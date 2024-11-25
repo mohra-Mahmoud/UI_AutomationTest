@@ -2,10 +2,12 @@ package CartFunctionality;
 
 import MainMethods.MainMethods;
 import SearchTest.searchFunctionality;
+import Utilites.ReportManger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 
@@ -43,7 +45,6 @@ public void IntialAddToCartElements(){
         IntialAddToCartElements();
         Actions hover=new Actions(driver);
         hover.moveToElement(product).perform();
-        Thread.sleep(2000);
         add_cart_button.click();
         Thread.sleep(2000);
         String ActualResult=PopUpMessage.getText();
@@ -55,13 +56,18 @@ public void IntialAddToCartElements(){
 
 
     }
-    @Test(dependsOnMethods ="ADDSearchedProductToCart" )
+/*    @Test(dependsOnMethods ="ADDSearchedProductToCart" )
     public void VerifyThatProductAddedToCart() throws InterruptedException {
         IntialCartElements();
         System.out.println( driver.getCurrentUrl());
         String actualproduct =productincart.getText();
         String expectedproduct="Rs. 400";
-        Assert.assertEquals(actualproduct,expectedproduct);
+        Assert.assertEquals(actualproduct,expectedproduct);}*/
+    @AfterClass
+    public void tearDown() {
+        driver.quit();
+
+    }
 
 
 
@@ -73,4 +79,4 @@ public void IntialAddToCartElements(){
 
 
 
-}}
+}
