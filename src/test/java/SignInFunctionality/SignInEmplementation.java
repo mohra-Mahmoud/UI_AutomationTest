@@ -4,6 +4,8 @@ import MainMethods.MainMethods;
 import SignUpFunctionality.SignUpImplementation;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -26,7 +28,8 @@ public class SignInEmplementation extends MainMethods {
         signUp.setUp(); // Initialize the browser
         signUp.NavigateToSignUpScreen(); // Navigate to sign-up page
         signUp.FillSignUpForm(); // Fill the first sign-up form
-        signUp.EnterAccountInformation(); // Fill account information
+        signUp.EnterAccountInformation();
+        //signUp.ClickonLogoutButton();// Fill account information
 
         // Retrieve the saved credentials
         this.SavedEmail = SignUpImplementation.getSavedEmail();
@@ -37,28 +40,35 @@ public class SignInEmplementation extends MainMethods {
         // Optionally close the browser after signup to start fresh
 
 
-    private void IntialLoginElements(){
-        this.emailField=driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/form/input[2]"));
-        this.PasswordField=driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/form/input[3]"));
-        this.LoginButton=driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/form/button"));
+   private void IntialLoginElements(){
+       this.emailField=driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/form/input[2]"));
+       this.PasswordField=driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/form/input[3]"));
+      this.LoginButton=driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/form/button"));
+
+  }
+   private void IntialHomeElementsForUser(){
+      this.LogoutButton=driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]"));
+
+
 
     }
     @Test
     public void loginWithValidCredintials(){
 
-        driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a")).click();
+       driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a")).click();
         IntialLoginElements();
-        emailField.sendKeys(SavedEmail);
-        PasswordField.sendKeys(SavedPassword);
-        LoginButton.click();
-        System.out.println(SavedEmail);
-        System.out.println(SavedPassword);
+       emailField.sendKeys(SavedEmail);
+       PasswordField.sendKeys(SavedPassword);
+       LoginButton.click();
+        IntialHomeElementsForUser();
+       Assert.assertTrue(LogoutButton.isDisplayed(),"Element not dispalyed");
 
+}
+    @AfterClass
+    public void tearDown() {
 
-
-
+        driver.quit();
     }
-
 
 
 

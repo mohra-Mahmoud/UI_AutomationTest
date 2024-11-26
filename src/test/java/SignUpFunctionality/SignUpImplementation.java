@@ -38,6 +38,7 @@ public class SignUpImplementation extends MainMethods {
     private WebElement City;
     private WebElement ZipCode;
     private WebElement Mobile;
+
     public static String savedEmail;
     public static String savedPassword;
 
@@ -49,6 +50,7 @@ public class SignUpImplementation extends MainMethods {
      */
     private void initializeHomePageElements() {
         this.SignUpLink = driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a"));
+
     }
 
     /**
@@ -79,6 +81,8 @@ public class SignUpImplementation extends MainMethods {
         this.ZipCode =driver.findElement(By.xpath("//*[@id=\"zipcode\"]"));
         this.Mobile = driver.findElement(By.xpath("//*[@id=\"mobile_number\"]"));
     }
+
+
 
 
 
@@ -130,6 +134,14 @@ public class SignUpImplementation extends MainMethods {
         // Verify successful account creation
         Assert.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/account_created", "Account creation failed");
     }
+    @Test(priority = 4, dependsOnMethods = "EnterAccountInformation")
+   public void ClickonLogoutButton(){
+        // Click on Contiue button
+        driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div/div/a")).click();
+        //click on logout button
+
+       driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]")).click();
+   }
 
 
 
@@ -138,7 +150,7 @@ public class SignUpImplementation extends MainMethods {
     public void tearDown() {
 
         driver.quit();
-    }
+   }
     public static String getSavedEmail() {
 
         return  savedEmail;
